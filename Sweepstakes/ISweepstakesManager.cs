@@ -11,5 +11,6 @@ namespace Sweepstakes
         // Member methods
         void InsertSweepstakes(Sweepstakes sweepstakes);
         Sweepstakes GetSweepstakes();
+        int GetCount();
     }
 }

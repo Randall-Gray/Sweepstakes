@@ -17,5 +17,14 @@ namespace Sweepstakes
         // constructor
 
         // Member methods
+        public virtual void PrintContestantInfoLine()
+        {
+            UserInterface.PrintContestantInfoLine(this);
+        }
+
+        public virtual void Notify(string sweepstakesName, Contestant winner)
+        {
+            UserInterface.NotifyNonWinner(sweepstakesName, this, winner);
+        }
     }
 }

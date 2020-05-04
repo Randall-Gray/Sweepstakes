@@ -10,13 +10,13 @@ namespace Sweepstakes
     {
         static void Main(string[] args)
         {
-            Simulation marketingFirm = new Simulation();
+            Simulation simulation = new Simulation();
 
             do
             {
-                marketingFirm.CreateMarketingFirmWithManager();
+                simulation.RunSimulation();
 
-                if (UserInterface.AskUserYesOrNo("Would you like to go again") != true)
+                if (UserInterface.AskUserYesOrNo("Would you like to run the simulation again") != true)
                     break;
             }
             while (true);

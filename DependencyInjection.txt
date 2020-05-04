@@ -2,4 +2,4 @@ Dependency Injection in the MarketingFirm Class
 
 Instead of containing a specific type of SweepstakesManager, MarketingFirm has an ISweepstakesManager interface 
 member variable.  This allows it to determine which SweepstakesManager to use at run time.  It is not dependent
-on a particular one.
+on a particular one.  The MarketingFirm constructor injects the proper SweepstakesManager into the class.

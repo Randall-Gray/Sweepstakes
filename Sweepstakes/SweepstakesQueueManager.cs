@@ -14,18 +14,23 @@ namespace Sweepstakes
         // constructor
         public SweepstakesQueueManager()
         {
-
+            queue = new Queue<Sweepstakes>();
         }
 
         // Member methods
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
-
+            queue.Enqueue(sweepstakes);
         }
 
         public Sweepstakes GetSweepstakes()
         {
+            return queue.Dequeue();
+        }
 
+        public int GetCount()
+        {
+            return queue.Count;
         }
     }
 }
