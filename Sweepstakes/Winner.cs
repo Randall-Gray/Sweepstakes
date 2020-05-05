@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sweepstakes
 {
-    class Winner : Contestant
+    public class Winner : Contestant
     {
         // Member variables
 
@@ -20,7 +20,7 @@ namespace Sweepstakes
 
         public override void Notify(string sweepstakesName, Contestant winner)
         {
-            UserInterface.NotifyWinner(sweepstakesName, this);
+            UserInterface.NotifyWinner(sweepstakesName, winner);
         }
     }
 }

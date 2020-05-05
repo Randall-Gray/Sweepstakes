@@ -41,9 +41,10 @@ namespace Sweepstakes
         {
             locked = true;
 
-            Contestant contestant;
+            Contestant contestant = null;
 
-            contestants.TryGetValue(winnerPicker.Next(1, contestants.Count), out contestant);
+            if (contestants.Count > 0)
+                contestants.TryGetValue(winnerPicker.Next(1, contestants.Count), out contestant);
 
             if (contestant != null)         // Dictionary not empty
                 contestant = MakeWinnerContestant(contestant);     
@@ -78,7 +79,10 @@ namespace Sweepstakes
         {
             UserInterface.PrintSweepstakesWinnerHeader(name);
 
-            contestant.PrintContestantInfoLine();
+            if (contestant != null)
+                contestant.PrintContestantInfoLine();
+            else
+                UserInterface.PrintSweepstakesNoWinner();
         }
 
         public void NotifyContestants(Contestant winner)

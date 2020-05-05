@@ -15,8 +15,8 @@ namespace Sweepstakes
             Console.WriteLine("Welcome to the Marketing Firm Sweepstakes Simulator");
         }
 
-        // Get type of sweepstakes manager used.
-        static public string GetSweepstackesManagerType(string [] sweepstakesManagerTypes)
+        // Get type of sweepstakes manager to use.
+        static public string GetSweepstackesManagerType(string[] sweepstakesManagerTypes)
         {
             bool validInput;
             int type;
@@ -33,6 +33,7 @@ namespace Sweepstakes
             return sweepstakesManagerTypes[type - 1];
         }
 
+        // Display numbered list of Sweepstakes Manager types for user integer input.
         static private void DisplaySweepstakesManagerTypes(string[] sweepstakesManagerTypes)
         {
             for (int i = 0; i < sweepstakesManagerTypes.Length; i++)
@@ -48,12 +49,14 @@ namespace Sweepstakes
             return Console.ReadLine();
         }
 
+        // Displays sweepstakes contestant information and registration number.
         static public void ConfirmRegistration(string sweepstakesName, Contestant contestant)
         {
             Console.WriteLine("\n{0} Sweepstakes Entry", sweepstakesName);
             PrintContestantInfoLine(contestant);
         }
 
+        // Displays all of a contestant's information on a single line.
         static public void PrintContestantInfoLine(Contestant contestant)
         {
             Console.Write("Contestant #{0}  ", contestant.registrationNumber);
@@ -61,6 +64,7 @@ namespace Sweepstakes
             Console.WriteLine("\tEmail: {0}", contestant.emailAddress);
         }
 
+        // Displays all of a winning contestant's information on a single line with indication of being a winner.
         static public void PrintWinnerContestantInfoLine(Contestant contestant)
         {
             Console.Write("WINNER - Contestant #{0}  ", contestant.registrationNumber);
@@ -68,20 +72,28 @@ namespace Sweepstakes
             Console.WriteLine("\tEmail: {0}", contestant.emailAddress);
         }
 
+        // Display header before listing all sweepstakes results.
         static public void PrintSweepstakesResultsHeader()
         {
             Console.Clear();
             Console.WriteLine("Sweepstakes Results");
         }
 
+        // Display header before listing all contestants of a sweepstakes.
         static public void PrintSweepstakesContestantsHeader(string sweepstakeName)
         {
             Console.WriteLine("\n{0} Sweepstakes Entrants: ", sweepstakeName);
         }
 
+        // Display header before listing winner of a sweepstakes.
         static public void PrintSweepstakesWinnerHeader(string sweepstakeName)
         {
             Console.WriteLine("\n{0} Sweepstakes Winner: ", sweepstakeName);
+        }
+
+        static public void PrintSweepstakesNoWinner()
+        {
+            Console.WriteLine("NO WINNER");
         }
 
         static public void PrintNotifyContestantsHeader(string sweepstakeName)

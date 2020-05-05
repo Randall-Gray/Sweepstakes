@@ -9,21 +9,16 @@ namespace Sweepstakes
     public class Simulation
     {
         // Member variables
-        private string[] sweepstakesManagerTypes = { "stack", "queue" };
-
         private MarketingFirm marketingFirm;
 
         // constructor
-        public Simulation()
-        {
-        }
-
+    
         // Member methods
         public void RunSimulation()
         {
             UserInterface.Welcome();
 
-            CreateMarketingFirmWithManager(UserInterface.GetSweepstackesManagerType(sweepstakesManagerTypes));
+            CreateMarketingFirmWithManager();
 
             // Create sweepstakes with contestants
             while (UserInterface.AskUserYesOrNo("Create sweepstakes", true))
@@ -34,18 +29,15 @@ namespace Sweepstakes
             while (marketingFirm.RunNextSweepstake());
         }
 
-        // Marketing Firm factory
-        public void CreateMarketingFirmWithManager(string sweepstakesManagerType)
+        public void CreateMarketingFirmWithManager()
         {
-            switch (sweepstakesManagerType)
-            {
-                case "stack":
-                    marketingFirm = new MarketingFirm(new SweepstakesStackManager());
-                    break;
-                case "queue":
-                    marketingFirm = new MarketingFirm(new SweepstakesQueueManager());
-                    break;
-            }
+            SweepstakesManagerStore sweepstakesManagerStore = new SweepstakesManagerStore();
+
+            string sweepstakesManagerType = UserInterface.GetSweepstackesManagerType(sweepstakesManagerStore.SweepstakesManagerTypes);
+
+            ISweepstakesManager sweepstakesManager = sweepstakesManagerStore.GetSweepstakesManager(sweepstakesManagerType);
+
+            marketingFirm = new MarketingFirm(sweepstakesManager);
         }
     }
 }
