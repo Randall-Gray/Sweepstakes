@@ -15,11 +15,8 @@ namespace Sweepstakes
             do
             {
                 simulation.RunSimulation();
-
-                if (UserInterface.AskUserYesOrNo("Would you like to run the simulation again") != true)
-                    break;
             }
-            while (true);
+            while (UserInterface.AskUserYesOrNo("Would you like to run the simulation again"));
         }
     }
 }

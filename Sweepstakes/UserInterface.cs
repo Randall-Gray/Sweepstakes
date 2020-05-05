@@ -52,7 +52,7 @@ namespace Sweepstakes
         // Displays sweepstakes contestant information and registration number.
         static public void ConfirmRegistration(string sweepstakesName, Contestant contestant)
         {
-            Console.WriteLine("\n{0} Sweepstakes Entry", sweepstakesName);
+            Console.WriteLine("\n\"{0}\" Sweepstakes Entry", sweepstakesName);
             PrintContestantInfoLine(contestant);
         }
 
@@ -82,35 +82,39 @@ namespace Sweepstakes
         // Display header before listing all contestants of a sweepstakes.
         static public void PrintSweepstakesContestantsHeader(string sweepstakeName)
         {
-            Console.WriteLine("\n{0} Sweepstakes Entrants: ", sweepstakeName);
+            Console.WriteLine("\n\"{0}\" Sweepstakes Entrants: ", sweepstakeName);
         }
 
         // Display header before listing winner of a sweepstakes.
         static public void PrintSweepstakesWinnerHeader(string sweepstakeName)
         {
-            Console.WriteLine("\n{0} Sweepstakes Winner: ", sweepstakeName);
+            Console.WriteLine("\n\"{0}\" Sweepstakes Winner: ", sweepstakeName);
         }
 
-        static public void PrintSweepstakesNoWinner()
-        {
-            Console.WriteLine("NO WINNER");
-        }
-
+        // Display header before listing contestant notifications.
         static public void PrintNotifyContestantsHeader(string sweepstakeName)
         {
-            Console.WriteLine("\n{0} Sweepstakes Sending Contestant Notifications: ", sweepstakeName);
+            Console.WriteLine("\n\"{0}\" Sweepstakes Sending Contestant Notifications: ", sweepstakeName);
         }
 
+        // No contestants, no winner, no notifications.
+        static public void PrintNone()
+        {
+            Console.WriteLine("(None)");
+        }
+
+        // Notification sent for a non-winning contestant.
         static public void NotifyNonWinner(string sweepstakesName, Contestant contestant, Contestant winner)
         {
             Console.WriteLine("To: {0} {1} (Email: {2})", contestant.firstName, contestant.lastName, contestant.emailAddress);
-            Console.WriteLine("{0} Sweepstakes: Sorry!! You are not a winner!! {1} {2} won.", sweepstakesName, winner.firstName, winner.lastName);
+            Console.WriteLine("\"{0}\" Sweepstakes: Sorry!! You are not a winner!! (Winner: {1} {2})", sweepstakesName, winner.firstName, winner.lastName);
         }
 
+        // Notification sent for a winning contestant.
         static public void NotifyWinner(string sweepstakesName, Contestant contestant)
         {
             Console.WriteLine("To: {0} {1} (Email: {2})", contestant.firstName, contestant.lastName, contestant.emailAddress);
-            Console.WriteLine("{0} Sweepstakes: Congratulations!! You are a winner!!", sweepstakesName);
+            Console.WriteLine("\"{0}\" Sweepstakes: Congratulations!! You are a winner!!", sweepstakesName);
         }
 
         // Ask user a Yes or No question e.g. "Everything okay", "Go again"

@@ -28,6 +28,7 @@ namespace Sweepstakes
         }
 
         // Member methods
+        // Set contestant registration number and add to the Dictionary of contestants
         public void RegisterContestant(Contestant contestant)
         {
             if (!locked)
@@ -37,9 +38,10 @@ namespace Sweepstakes
             }
         }
 
+        // Use random number generator to pick a winner from the Dictionary of contestants.
         public Contestant PickWinner()
         {
-            locked = true;
+            locked = true;      // No more contestants can register for this sweepstakes.
 
             Contestant contestant = null;
 
@@ -52,6 +54,7 @@ namespace Sweepstakes
             return contestant;
         }
 
+        // Change the contestant to a winner object and replace it in the Dictionary of contestants.
         private Winner MakeWinnerContestant(Contestant contestant)
         {
             Winner winner = new Winner();
@@ -61,35 +64,48 @@ namespace Sweepstakes
             winner.emailAddress = contestant.emailAddress;
             winner.registrationNumber = contestant.registrationNumber;
 
-            contestants.Remove(contestant.registrationNumber);
-            contestants.Add(winner.registrationNumber, winner);
+            contestants.Remove(contestant.registrationNumber);      // Remove the contestant
+            contestants.Add(winner.registrationNumber, winner);     // Replace with a winner.
 
             return winner;
         }
 
+        // Display all the contestants registered for the sweepstakes.
         public void PrintContestantsInfo()
         {
             UserInterface.PrintSweepstakesContestantsHeader(name);
 
-            foreach (Contestant contestant in contestants.Values)
-                contestant.PrintContestantInfoLine();
+            if (contestants.Count > 0)
+            {
+                foreach (Contestant contestant in contestants.Values)
+                    contestant.PrintContestantInfoLine();           // winners will print different information.
+            }
+            else
+                UserInterface.PrintNone();
         }
 
+        // Display the winner of the sweepstakes information.
         public void PrintWinnerContestantInfo(Contestant contestant)
         {
             UserInterface.PrintSweepstakesWinnerHeader(name);
 
             if (contestant != null)
-                contestant.PrintContestantInfoLine();
+                contestant.PrintContestantInfoLine();               // winners will print different information.
             else
-                UserInterface.PrintSweepstakesNoWinner();
+                UserInterface.PrintNone();
         }
 
+        // Notify all the contestants in the sweepstakes whether they won or not.
         public void NotifyContestants(Contestant winner)
         {
             UserInterface.PrintNotifyContestantsHeader(name);
-            foreach (Contestant contestant in contestants.Values)
-                contestant.Notify(name, winner);
+            if (contestants.Count > 0)
+            {
+                foreach (Contestant contestant in contestants.Values)
+                    contestant.Notify(name, winner);                // winners will send different notification.
+            }
+            else
+                UserInterface.PrintNone();
         }
     }
 }

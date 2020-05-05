@@ -18,10 +18,19 @@ namespace Sweepstakes
         }
 
         // Member methods
+        // Create a Sweepstakes with contestants.
         public void CreateSweepstake()
         {
             Sweepstakes sweepstakes = new Sweepstakes(UserInterface.GetUserInputFor("Sweepstakes Name"));
 
+            AddContestantsToSweepstakes(sweepstakes);
+
+            manager.InsertSweepstakes(sweepstakes);
+        }
+
+        // Add contestants to the sweepstakes.
+        private void AddContestantsToSweepstakes(Sweepstakes sweepstakes)
+        {
             Contestant contestant;
 
             // Add contestants to sweepstakes
@@ -36,23 +45,24 @@ namespace Sweepstakes
                 sweepstakes.RegisterContestant(contestant);
                 UserInterface.ConfirmRegistration(sweepstakes.Name, contestant);
             }
-
-            manager.InsertSweepstakes(sweepstakes);
         }
 
+        // Get the next sweepstakes from the manager, pick a winner, notify all contestants.
         public bool RunNextSweepstake()
         {
-            if (manager.GetCount() == 0)
-                return false;
-
             Sweepstakes sweepstake = manager.GetSweepstakes();
 
-            sweepstake.PrintContestantsInfo();
-            Contestant winner = sweepstake.PickWinner();
-            sweepstake.PrintWinnerContestantInfo(winner);
-            sweepstake.NotifyContestants(winner);
+            if (sweepstake != null)
+            {
+                sweepstake.PrintContestantsInfo();
+                Contestant winner = sweepstake.PickWinner();
+                sweepstake.PrintWinnerContestantInfo(winner);
+                sweepstake.NotifyContestants(winner);
 
-            return true;
+                return true;
+            }
+
+            return false;
         }
     }
 }

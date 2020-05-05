@@ -18,19 +18,19 @@ namespace Sweepstakes
         }
 
         // Member methods
+        // Add Sweepstakes to the stack.
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
             stack.Push(sweepstakes);
         }
 
+        // Remove Sweepstakes from the stack.
         public Sweepstakes GetSweepstakes()
         {
-            return stack.Pop();
-        }
+            if (stack.Count != 0)
+                return stack.Pop();
 
-        public int GetCount()
-        {
-            return stack.Count;
+            return null;
         }
     }
 }

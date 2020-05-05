@@ -15,6 +15,7 @@ namespace Sweepstakes
         // constructor
 
         // Member methods
+        // Sweepstakes manager factory.
         public ISweepstakesManager GetSweepstakesManager(string type)
         {
             ISweepstakesManager sweepstakesManager;

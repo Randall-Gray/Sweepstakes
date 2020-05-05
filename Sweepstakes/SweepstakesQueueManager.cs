@@ -18,19 +18,19 @@ namespace Sweepstakes
         }
 
         // Member methods
+        // Add Sweepstakes to the queue.
         public void InsertSweepstakes(Sweepstakes sweepstakes)
         {
             queue.Enqueue(sweepstakes);
         }
 
+        // Remove Sweepstakes from the queue.
         public Sweepstakes GetSweepstakes()
         {
-            return queue.Dequeue();
-        }
+            if (queue.Count != 0)
+                return queue.Dequeue();
 
-        public int GetCount()
-        {
-            return queue.Count;
+            return null;
         }
     }
 }
